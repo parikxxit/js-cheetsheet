@@ -720,4 +720,148 @@ set.delete("Facebook");
     you had just created a new one.
 */
 set.clear(); //RIP elements
-/*==========================================MAPS===================================================*/
+/*===========================================MAPS===================================================*/
+/*
+Maps in JavaScript are an object type that allow you to store collections in key-value pairs.
+You can think of how a dictionary works in the sense that if you want to know the definition of a 
+word (the value), you only need to locate the word itself (the key).
+*/
+// creating
+var map = new Map();
+//seting value
+map.set("red", "apple");
+map.set("blue", "blueberry");
+map.set("green", "pear");
+
+console.log(map);
+// get
+/*
+    After you have populated a map with some elements, you can get them back by using the get method 
+    and pass in the key.
+*/
+var item = map.get("blue");
+console.log(item);
+//size
+console.log(map.size);
+//has
+/*
+    Instead of getting an element then checking if it is null or even exists, you can use the has
+    method to check if a map has a key and it returns true if it exists and  false if not.
+*/
+console.log(map.has("red"));
+console.log(map.has("yellow"));
+// delete
+map.delete("blue");
+console.log(map);
+// clear 
+// to empty the map
+map.clear();
+console.log(map);
+/*====================================TIMEOUT && TIME INTERVAL=====================================*/
+//set time out
+/*
+    A timeout lets you run a function after a certain amount of time has elapsed. This is done with
+    the setTimeout function that takes as its parameters the function to run and in how much time
+    into the future (in milliseconds).
+*/
+function hello(){
+    console.log("hello from set time out");
+}
+var timeOut = setTimeout(hello, 5*1000);
+//clear timeout
+clearTimeout(timeOut);
+//Set Interval 
+/*
+    Intervals are a simpler way of making code repeat over and over again, with a set amount of time
+    in between, the interval time. You can think of intervals as basically timeouts that call themselves
+    at the end to continue the cycle.
+*/
+var seconds = 0;
+function printTime(){
+    seconds++;
+    console.log("Seconds elapsed: " + seconds);
+}
+// var inteval = setInterval(printTime, 1000);
+//increased the value of second every second and means function will run ewvery second
+//clear interval
+/*
+    As with clearTimeout, clearInterval is a way you can clear your intervals and prevent it from
+    continuing on forever. Sticking with our timer example, let's say you wanted to stop repeating
+    once you hit 10 seconds.
+*/
+function printTimeUntil10() {
+    seconds++; // increment seconds by 1
+    console.log("Seconds elapsed: " + seconds);
+
+    if (seconds === 10) {
+        console.log("10 seconds has elapsed!")
+        clearInterval(interval); // we're done, clear it!
+    }
+}
+
+var interval = setInterval(printTimeUntil10, 1000);
+/*========================================WORKING WITH DATE========================================*/
+//creating a date
+var date = new Date();
+console.log(date);
+//datestring
+/*
+    If you pass in a string, or a Datestring, it will be parsed with the Date.parse() method to give 
+    you back the Date object.
+*/
+date = new Date("March 4, 2017");
+console.log(date);
+//unix time
+/*
+    In the field of computer science, there is a concept of Unix time. This abitrarily decided moment
+    in time is set to midnight on January 1st, 1970.
+    With that frame of reference in mind, if you pass in a number to a Date object, that number 
+    represents the number of milliseconds that have elapsed since then.
+    Here is one trillion milliseconds since then:
+*/
+date = new Date(1000000000000);
+console.log(date);
+//multiple parameter
+/*
+    Another way of creating new Date objects is by passing in 7 numbers. These numbers represent, in
+    order, the year, month, day, hour, minute, second, and millisecond. The last 4 parameters are
+    optional.
+*/
+date = new Date(2000, 5, 8, 12, 0, 0, 0);
+console.log(date);
+
+//Manipulating dates
+/*
+    getDate(): Returns the day in the month
+    getDay(): Returns the day in the week
+    getMonth(): Returns the month
+    getFullYear(): Returns the year
+    getHours(): Returns the hour
+    getMinutes(): Returns the minutes
+    getSeconds(): Returns the seconds
+    getMilliseconds(): Returns the millseconds
+    getTime(): Returns the milliseconds elapsed since Unix time
+*/
+date = new Date();
+console.log("Date: " + date);
+console.log("getDate(): " + date.getDate());
+console.log("getDay(): " + date.getDay());
+console.log("getMonth(): " + date.getMonth());
+console.log("getFullYear(): " + date.getFullYear());
+console.log("getHours(): " + date.getHours());
+console.log("getMinutes(): " + date.getMinutes());
+console.log("getSeconds(): " + date.getSeconds());
+console.log("getMilliseconds(): " + date.getMilliseconds());
+console.log("getTime(): " + date.getTime());
+/*
+    Setters
+    Here are all the methods for setting information in your Date object:
+    setDate();// Sets the day in the month
+    setMonth(); //Sets the month
+    setFullYear();// Sets the year
+    setHours(); //Sets the hour
+    setMinutes(); //Sets the minutes
+    setSeconds(); //Sets the seconds
+    setMilliseconds(); //Sets the millseconds
+    setTime(); //Sets the milliseconds elapsed since Unix time
+*/
