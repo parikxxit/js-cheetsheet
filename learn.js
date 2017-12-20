@@ -865,3 +865,161 @@ console.log("getTime(): " + date.getTime());
     setMilliseconds(); //Sets the millseconds
     setTime(); //Sets the milliseconds elapsed since Unix time
 */
+/*=======================================DOCUMENT OBJECT MODEL======================================*/
+/*
+    Getting back a single element from the page is as easy as using the querySelector method on the 
+    document object.This method requires a string which is the selector you want to target.
+*/
+//query selector
+var apple = document.querySelector("#apple");
+var pears = document.querySelector(".pears");
+var oranges = document.querySelector("span");
+
+console.log(apple);
+console.log(pears);
+console.log(oranges);
+/*
+    Keep in mind that querySelector will return back the first instance of an element that fits your
+    selector, even if there are multiple.
+*/
+//query selctor all
+var fruit = document.querySelectorAll(".fruit");
+console.log(fruit);
+//return an Array of all the element with class fruit
+
+//Creating an element
+/*
+    element can be reated by appending them to existing element uning javascript
+*/
+var span = document.createElement("span");
+span.setAttribute("class", "date");
+span.textContent = new Date().toDateString();
+document.body.appendChild(span);
+//it will add the elemement just below the closing tag of the body below our script
+
+// Removing Element
+//method #1
+var parent = document.querySelector(".parent");
+var kid = document.querySelector(".kid");
+parent.removeChild(kid);
+//Method #2
+var teen = document.querySelector(".teen");
+teen.parentNode.removeChild(teen);
+// adding removing and testing classes
+//adding testy class to the apple 
+apple.classList.add("tasty");
+//removing class from apple
+apple.classList.remove("tasty");
+//Checking the class contained by the element or not 
+if (apple.classList.contains("tasty")){
+    console.log("apples are tasty");
+} else {
+    console.log("apples are not tasty");
+}
+//SETTING GETTING AND REMOVING PROPERTY
+/*
+    Properties on DOM elements can be manipulated in JavaScript because they are simply object properties.These are examples of some properties to work with:
+
+    value: The value of a tag(usually input tags).
+    href: The link of an anchor.
+    alt: The alternative text of an image.
+    title: Information about an element.
+
+*/
+var link = document.querySelector("a");
+link.href = "https://sabe.io/";
+//ascess value to the input field for username
+var usernameInput = document.querySelector(".username");
+var usernmaeValue = usernameInput.value;
+console.log(usernmaeValue);
+
+//getAttribute
+var animal = document.querySelector("img");
+console.log("src of first image is "+animal.getAttribute("src"));
+//setAttribute
+animal.setAttribute("alt", "this is done by set arrtibute, tough  I am cat");
+//removeAttribute 
+animal.removeAttribute("alt");
+console.log("alt removed succesfullly");
+
+//  APPLYING STYLE TO AN ELEMENT
+var simpleText = document.querySelector(".simple-text");
+
+simpleText.style.backgroundColor = "red";
+
+//Events
+//add event listener
+var button = document.querySelector("#button");
+button.addEventListener("click", ()=>{
+    console.log("I am logged");
+});
+
+/*
+    there are several more event like click 
+
+
+    click: When the element has been clicked.
+    keydown: When the user presses down on a key.
+    change: When the element has changed.
+    mouseover: When the element is hovered over.
+    mouseout: When the element is no longer hovered over.
+    mousemove: When the mouse moves
+    while hovered over the element.
+    load: When the document or element has finished loading.
+*/
+
+/*=============================================JSON================================================*/
+/*
+    JSON, standing for JavaScript Object Notation, is a data format meant to store and transfer data.You 've seen
+    this format when you've logged JavaScript objects in your console.
+    You can think of JSON as a string - representation of the data inside a JavaScript object.As such,
+    JSON supports the following values:
+    string
+    number
+    object
+    array
+    boolean
+    null
+*/
+/*
+    Javascript and JSON work really seamlessly together thanks to the methods stringify and parse,
+    provided by the JSON object.
+
+    These two methods convert a JavaScript object to JSON and back, so no matter which one you have,
+    you can easily generate the other.
+*/
+
+//stringify : convert json string into your js string
+ var child = {
+     "name": "Sophie",
+     "age": 3,
+     "weight": 15
+ }
+ var childJSON = JSON.stringify(child);
+ console.log(childJSON);
+ //parse : To get a JavaScript object from JSON, you must parse it
+ //reverse of stringify
+// var str = {"prop1" : "val1", "prop2": "val2", "prop3": "val4"};
+// var json_string = JSON.parse(str); //todo : fix this later 
+// console.log(json_string);
+ 
+ /*===========================================AJAX================================================*/
+/*
+ Instead of making AJAX calls using the original method, via an XMLHttpRequest, we 'll be using the
+ more modern fetch instead.
+*/
+// making ajax call
+ // base url
+ var base = 'https://jsonplaceholder.typicode.com';
+
+ // use fetch on the /posts route, then pass the response along
+ fetch(base + "/posts").then(function (response) {
+     // with the response, convert it to JSON, then pass it along
+     response.json().then(function (data) {//note arrow function will not work here :)
+         // print that JSON
+         console.log(data);
+     });
+ });
+
+ /*=======================================COOKIE==================================================*/
+ 
