@@ -1022,4 +1022,118 @@ button.addEventListener("click", ()=>{
  });
 
  /*=======================================COOKIE==================================================*/
+/*=====================================HIGHER ORDER FUNCTION====================================*/
+const companies = [
+    {name : "Company one", Catogery: "cat1", start : 1905, end : 1958},
+    {name : "Company two", Catogery: "cat2", start : 1935, end : 1968},
+    {name : "Company three", Catogery: "cat3", start : 1895, end : 1996},
+    {name : "Company four", Catogery: "cat4", start : 1945, end : 2000},
+    {name : "Company five", Catogery: "cat5", start : 1905, end : 1958},
+    {name : "Company six", Catogery: "cat6", start : 1998, end : 2000},
+    {name : "Company seven", Catogery: "cat7", start : 2005, end : 2010},
+    {name : "Company eight", Catogery: "cat8", start : 2009, end : 2017},
+    {name : "Company nine", Catogery: "cat9", start : 1905, end : 2000}
+]
+
+const ages = [12, 45, 56, 85, 15, 25, 45, 26, 36, 34, 37, 12, 15, 18, 22]
+
+//forEach
+// for(let i = 0; i < companies.length; i++) {
+//     console.log(companies[i]);
+// } compare with for loop
+companies.forEach(function(iterator, index, array){
+        console.log(iterator.name)
+});
+//filter filter things from array getting ages for 21 and over
+// let canDrink = [];
+// for(let i = 0;i<ages.length;i++){
+//     if(ages[i]>21){
+//         canDrink.push(ages[i]);
+//     }
+// }
+//for loop example
+
+
+// const canDrink = ages.filter(function(age){
+//     if(age>=21){ //condition 
+//         return true;
+//     }
+// });
+//ES6 VERSION
+const canDrink = ages.filter(age => age >= 21)
+console.log(canDrink);
+//filter cat1 comapnies
+// const cat1Companies = companies.filter(function(company){
+//     if(company.Catogery === "cat1"){
+//         return true;
+//     }
+// });
+
+//ES6 VERSION 
+const cat1Companies = companies.filter(company => company.Catogery === "cat1");
+console.log(cat1Companies); //return an array
+
+
+//company started after 80
+const getCompaniesFromStart = companies.filter(company => company.start >= 1980);
+console.log(getCompaniesFromStart);
+
+// Companies last more then thn years
+const companiesMoreThenTen = companies.filter(company => (company.end - company.start) > 10);
+console.log(companiesMoreThenTen);
+//===================================================map=========================================
+//insted filtering creat new array form given array
+const getCompanyName = companies.map(function(company) {
+    return company.name;
+});
+console.log(getCompanyName);
+
+//to get company name and start and end dates
+// const newArray = companies.map(function (company) {
+//     return `${company.name} [${company.start} - ${company.end}]`;
+// });
+//ES6 VERSION
+const newArray = companies.map(company => `${company.name} [${company.start} - ${company.end}]`);
+console.log(newArray);
+const ageMap = ages
+    .map(age => Math.sqrt(age))
+    .map(age => age * 2);
+console.log(ageMap);
+//square root the val and multiply by 2 
+//===========================================short============================================
+//short company from start year
+// const sortedCompany = companies.sort(function(c1,c2){
+//     if(c1.start > c2.start){
+//         return 1;
+//     } else{
+//         return -1;
+//     }
+// }); takes two argument and compare them and short them as the return is 1 or -1
+//ES6 VERSION 
+const sortedCompany = companies.sort((a,b)=> (a.start > b.start ? 1 : -1));
+console.log(sortedCompany);
+//short ages
+const sortedAges = ages.sort((a,b)=> a-b);
+console.log(sortedAges);
+//reduce
+
+//for loop version
+// let ageSum = 0;
+// for(let i=0;i<ages.length;i++){
+//     ageSum+=ages[i];
+// }
+// const ageSum = ages.reduce(function(total, age){
+//     return total + age;
+// }, 0);
+//ES6 VERSION
+const ageSum = ages.reduce((total, age)=> total + age, 0);
+console.log(ageSum);
+//combine methods
+
+const combined = ages
+    .map(age => age * 2)
+    .filter(age => age >= 40)
+    .sort((a,b)=> a-b)
+    .reduce((a,b)=> a+b, 0); 
+console.log(combined);
  
